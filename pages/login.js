@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import Navbar from '@/components/navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,10 +15,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
+      <nav className='bg-gray-800'>
+        <h1>Hello</h1>
+      </nav>
 
       <main className={styles.main}>
-        <div className="text-3xl text-grey-600 p-2">
+        <div className="text-3xl text-green-600 p-2">
           <h1>Dashboard</h1>
         </div>
       </main>
