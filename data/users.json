@@ -1,0 +1,20 @@
+{
+    "jdoe": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "password": "Password1234",
+        "accounts": []
+    },
+    "ghulvey": {
+        "first_name": "Gavin",
+        "last_name": "Hulvey",
+        "password": "Password",
+        "accounts": ["M123456", "N123456", "G123456"]
+    },
+    "ghulvey2": {
+        "first_name": "Gavin",
+        "last_name": "Hulvey",
+        "password": "Foo",
+        "accounts": []
+    }
+}

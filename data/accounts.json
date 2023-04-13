@@ -1,0 +1,35 @@
+{
+    "M123456": {
+        "account_number": "M123456",
+        "owner": "ghulvey",
+        "coin": "Maletic Money",
+        "balance": 1.23422,
+        "transactions": [{
+            "description": "Initial deposit",
+            "amount": 1.23422,
+            "date": "2019-01-01"
+        }]
+    },
+    "N123456": {
+        "account_number": "N123456",
+        "owner": "ghulvey",
+        "coin": "Nesty Coin",
+        "balance": 1.23422,
+        "transactions": [{
+            "description": "Initial deposit",
+            "amount": 1.23422,
+            "date": "2019-01-01"
+        }]
+    },
+    "G123456": {
+        "account_number": "G123456",
+        "owner": "ghulvey",
+        "coin": "Giovanni Token",
+        "balance": 1.23422,
+        "transactions": [{
+            "description": "Initial deposit",
+            "amount": 1.23422,
+            "date": "2019-01-01"
+        }]
+    }
+}
