@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useRouter } from 'next/router';
 import Link from 'next/link'
@@ -12,8 +12,8 @@ export default function Login() {
 
   const router = useRouter()
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
   const [error, setError] = useState('')
 
   const callAPI = async (e) => {
@@ -25,8 +25,8 @@ export default function Login() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          username,
-          password
+          username: usernameRef.current.value,
+          password: passwordRef.current.value
         })
       })
       const json = await res.json()
@@ -71,13 +71,13 @@ export default function Login() {
                 <label className="block text-sm font-bold mb-2" htmlFor="username">
                   Username
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" name="username"/>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" ref={usernameRef} placeholder="Username" name="username"/>
               </div>
               <div className="mb-6">
                 <label className="block text-sm font-bold mb-2" htmlFor="password">
                   Password
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="******************" name="password" />
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" ref={passwordRef} placeholder="******************" name="password" />
               </div>
               <div className='mb-6 flex items-center justify-between'>
                 <button className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">

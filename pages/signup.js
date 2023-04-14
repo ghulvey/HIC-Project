@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from 'next/router';
 import Link from 'next/link'
 
@@ -11,11 +11,11 @@ import Link from 'next/link'
 export default function Signup() {
 
   const router = useRouter()
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const firstNameRef = useRef(null);
+  const lastNameRef = useRef(null);
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
   const [error, setError] = useState('')
 
   const callAPI = async (e) => {
@@ -27,11 +27,11 @@ export default function Signup() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          firstName,
-          lastName,
-          username,
-          password,
-          confirmPassword
+          firstName: firstNameRef.current.value,
+          lastName: lastNameRef.current.value,
+          username: usernameRef.current.value,
+          password: passwordRef.current.value,
+          confirmPassword: confirmPasswordRef.current.value
         })
       })
       const json = await res.json()
@@ -77,32 +77,32 @@ export default function Signup() {
                 <label className="block text-sm font-bold mb-2" htmlFor="username">
                   First Name
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="first-name" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="John" name="first-name"/>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="first-name" type="text" ref={firstNameRef} placeholder="John" name="first-name"/>
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="username">
                   Last Name
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Smith" name="first-name"/>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="text" ref={lastNameRef} placeholder="Smith" name="first-name"/>
               </div>
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="username">
                   Username
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" name="username"/>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" ref={usernameRef} placeholder="Username" name="username"/>
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="password">
                   Password
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="******************" name="password" />
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" ref={passwordRef} placeholder="******************" name="password" />
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="confirm-password">
                   Confirm Password
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="confirm-password" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="******************" name="confirm-password" />
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="confirm-password" type="password" ref={confirmPasswordRef} placeholder="******************" name="confirm-password" />
               </div>
               <div className='mb-6 flex items-center justify-between'>
                 <button className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
