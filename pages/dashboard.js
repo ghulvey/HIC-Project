@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import Navbar from '@/components/navbar'
 import Header from '@/components/header'
 import AccountCard from '@/components/accountCard'
@@ -59,7 +57,7 @@ function Dashboard({ data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/user_info')
+  const res = await fetch('http://localhost:3000/api/user_info', { method: "POST" });
   const data = await res.json()
   return {
     props: {

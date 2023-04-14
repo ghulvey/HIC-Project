@@ -17,7 +17,6 @@ export default async function handler(req, res) {
         // Process a POST request
         if (objectData.hasOwnProperty(req.body.username)) {
             if (objectData[req.body.username]["password"] === req.body.password) {
-
                 res.setHeader("Set-Cookie", `user_id=${req.body.username}; path=/; samesite=lax; httponly;`);
                 res.status(200).json({ result: 'Success' })
             } else {
