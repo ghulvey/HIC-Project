@@ -25,7 +25,6 @@ export default async function handler(req, res) {
             let transactions = []
             for (let i = 0; i < userObjectData[user_id].accounts.length; i++) {
                 accounts.push(accountObjectData[userObjectData[user_id].accounts[i]])
-
                 for (let j = 0; j < accountObjectData[userObjectData[user_id].accounts[i]].transactions.length; j++) {
                     let temp = accountObjectData[userObjectData[user_id].accounts[i]].transactions[j]
                     temp.coin = accountObjectData[userObjectData[user_id].accounts[i]].coin
@@ -39,7 +38,6 @@ export default async function handler(req, res) {
                 transactions: transactions
             })
         } else {
-            console.log("here")
             res.status(400).json({ result: 'Failure', error: 'User not authenticated' })
         }
     } else {

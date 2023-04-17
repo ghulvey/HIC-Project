@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Navbar from '@/components/navbar'
 import Header from '@/components/header'
 import AccountCard from '@/components/accountCard'
+import Loading from '@/components/loading'
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from 'next/router';
 
@@ -36,7 +37,7 @@ function Dashboard() {
     fetchData()
   }, [])
 
-  if (isLoading) return <p>Loading...</p>
+  if (isLoading) return <Loading />
   if (!data) return <p>Failed to load</p>
 
 
