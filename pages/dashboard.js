@@ -3,11 +3,45 @@ import { Inter } from 'next/font/google'
 import Navbar from '@/components/navbar'
 import Header from '@/components/header'
 import AccountCard from '@/components/accountCard'
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from 'next/router';
 
-const inter = Inter({ subsets: ['latin'] })
 
-function Dashboard({ data }) {
+function Dashboard() {
+
+  const router = useRouter()
+  const [data, setData] = useState(null)
+  const [isLoading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Display a loading indicator
+      setLoading(true)
+      // Fetch the user's profile data
+      const response = await fetch('/api/user_info', {method: 'POST'})
+
+      // If the user is not authenticated, redirect to the login page
+      const stauts = await response.status
+      if (stauts === 400) {
+        router.push('/login')
+      } else {
+        // If the user is authenticated, display their profile data
+        const data = await response.json()
+        console.log(data)
+        setData(data)
+        setLoading(false)
+      }
+      
+    }
+    fetchData()
+  }, [])
+
+  if (isLoading) return <p>Loading...</p>
+  if (!data) return <p>Failed to load</p>
+
+
   const welcomeTitle = `Welcome back, ${data.first_name}!`
+  console.log(data)
   return (
     <>
       <Head>
@@ -27,21 +61,21 @@ function Dashboard({ data }) {
         <div className='flex items-center justify-center space-x-6 pt-6'>
           <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-100'>
           <h2 className='text-2xl text-center pb-2'>Recent Transactions</h2>
-          <table class="table-auto ">
+          <table className="table-auto ">
             <thead>
               <tr>
-                <th class="border px-4 py-2">Description</th>
-                <th class="border px-4 py-2">Coin</th>
-                <th class="border px-4 py-2">Amount</th>
+                <th className="border px-4 py-2">Description</th>
+                <th className="border px-4 py-2">Coin</th>
+                <th className="border px-4 py-2">Amount</th>
               </tr>
             </thead>
             <tbody>
               {data.transactions.map((transaction, index) => {
                 return (
                   <tr key={index}>
-                    <td class="border px-4 py-2">{transaction.description}</td>
-                    <td class="border px-4 py-2">{transaction.coin}</td>
-                    <td class="border px-4 py-2">{transaction.amount}</td>
+                    <td className="border px-4 py-2">{transaction.description}</td>
+                    <td className="border px-4 py-2">{transaction.coin}</td>
+                    <td className="border px-4 py-2">{transaction.amount}</td>
                   </tr>
                 )
               })}
@@ -56,14 +90,6 @@ function Dashboard({ data }) {
   )
 }
 
-export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/user_info', { method: "POST" });
-  const data = await res.json()
-  return {
-    props: {
-      data
-    }
-  }
-}
+
 
 export default Dashboard

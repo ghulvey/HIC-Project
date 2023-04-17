@@ -1,11 +1,9 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-//import { getCookies, setCookies, removeCookies } from 'cookies-next';
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-export default async function handler(req, res) {
 
-
+export default async function loginHandler(req, res) {
 
     //Find the absolute path of the json directory
     const jsonDirectory = path.join(process.cwd(), 'data');

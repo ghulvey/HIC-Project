@@ -1,9 +1,32 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
 
 
 
 const Navbar = () => {
+
+    const router = useRouter()
+
+    function logoutAPI() {
+        
+        fetch('/api/auth/signout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            router.push('/login')
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
     return ( 
         <nav className="flex items-center justify-between flex-wrap bg-red-900 p-4">
             <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -28,7 +51,7 @@ const Navbar = () => {
                 <a href="" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
                 Withdraw
                 </a>
-                <a href="#" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-red-900 hover:bg-white mt-4 lg:mt-0">Logout</a>
+                <button onClick={logoutAPI} className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-red-900 hover:bg-white mt-4 lg:mt-0">Logout</button>
             </div>
         
             </div>
