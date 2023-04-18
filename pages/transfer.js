@@ -27,14 +27,16 @@ function Transfers() {
         <div className="flex flex-col sm:flex-row items-center justify-center -mt-9">
           <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center mb-6 sm:mb-0">
             <h1 className="text-center text-4xl pb-4"></h1>
-            <div className="mb-8">
+            <div className="mb-8 ">
               <label className="block text-lg font-bold mb-4" htmlFor="transfer-amount">
                 Transfer Amount
               </label>
               <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="transfer-amount" type="number" placeholder="0.00" />
             </div>
             <br></br>
-            <div className="mb-6">
+            <br></br>
+            
+            <div className="mb-12">
               <label className="block text-lg font-bold mb-2" htmlFor="currency">
                 Currency
               </label>
@@ -52,13 +54,14 @@ function Transfers() {
               Transfer
             </button>
           </div>
-          <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96">
+          <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center">
           <h1 className="text-center text-2xl font-bold pb-4">Recipient Account</h1>
             <div className="mb-8">
               <label className="block text-lg font-bold mb-2" htmlFor="transfer-amount">
                 Account Number
               </label>
               <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="account-number" type="text" placeholder="Account Number" />
+              <h1 className="pt-5 text-lg font-bold">or</h1>
             </div>
             <div className="mb-6">
               <label className="block text-lg font-bold mb-2" htmlFor="currency">
