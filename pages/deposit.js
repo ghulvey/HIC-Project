@@ -2,6 +2,7 @@
 
 import Head from 'next/head';
 import Navbar from '@/components/navbar';
+import Header from '@/components/header';
 
 {/* may need to add alerts / api routes */}
 
@@ -14,18 +15,10 @@ function Deposit() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
+      <Header title="Make a deposit"/>
       <div className="bg-gray-300 sm:h-screen h-full">
-        <div className="bg-red-900">
-          <br></br>
-          <br></br>
-          <h1 className="text-center text-white text-6xl p-14">
-            Make a Deposit
-          </h1>
-          <br></br>
-          <br></br>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center justify-center -mt-9">
-        <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center mb-6 sm:mb-0">
+        <div className="flex flex-col sm:flex-row items-center justify-center">
+        <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center mb-6 sm:mb-0 -mt-9">
             <div className="mb-8">
                 <label className="block text-lg font-bold mb-4" htmlFor="transfer-amount">
                   Saved Accounts
@@ -70,7 +63,7 @@ function Deposit() {
               Deposit
             </button>
           </div>
-          <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center">
+          <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center -mt-9">
             <div className="mb-20">
               <label className="block text-2xl font-bold mb-4" htmlFor="transfer-amount">
                 Deposit Amount
