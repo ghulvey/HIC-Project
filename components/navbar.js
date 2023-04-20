@@ -51,7 +51,7 @@ const Navbar = () => {
                 <a href="" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
                 Convert
                 </a>
-                <a href="" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
+                <a href="/withdraw" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
                 Withdraw
                 </a>
                 <a href="/transfer" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">

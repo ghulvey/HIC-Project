@@ -6,19 +6,44 @@ import Header from '@/components/header';
 
 {/* may need to add alerts / api routes */}
 
-function Deposit() {
+function Withdraw() {
   return (
     <>
       <Head>
-        <title>Make a Deposit</title>
+        <title>Make a Withdraw</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <Header title="Make a deposit"/>
+      <Header title="Make a Withdraw"/>
       <div className="bg-gray-300 sm:h-screen h-full">
         <div className="flex flex-col sm:flex-row items-center justify-center">
-        <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center mb-6 sm:mb-0 -mt-9">
+            <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center -mt-9">
+                <div className="mb-20">
+                <label className="block text-2xl font-bold mb-4" htmlFor="withdraw-amount">
+                    Withdraw Amount
+                </label>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 mb-10 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="withdraw-amount" type="number" placeholder="0.00" />
+                </div>
+                <div className="mb-6">
+                <label className="block text-2xl font-bold mb-2" htmlFor="currency">
+                    Currency
+                </label>
+                <select className="shadow appearance-none border rounded w-full py-2 px-3 mb-20 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="currency">
+                    <option value="" hidden></option>
+                    <option>Maletic Money</option>
+                    <option>Nesty Coin</option>
+                    <option>Giovanni Token</option>
+                </select>
+                </div>
+            </div>
+          <div className="flex flex-col items-center sm:pr-10 sm:pl-10 mb-6 sm:mb-0">
+            <img src="/arrows.png" alt="Deposit" className="mb-4 w-12 h-12" />
+            <button className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              Withdraw
+            </button>
+          </div>
+          <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center mb-6 sm:mb-0 -mt-9">
             <div className="mb-8">
                 <label className="block text-lg font-bold mb-4" htmlFor="saved-accounts">
                   Saved Accounts
@@ -57,35 +82,10 @@ function Deposit() {
                 <label htmlFor="remember-account">Remember this account</label>
             </div>
             </div>
-          <div className="flex flex-col items-center sm:pr-10 sm:pl-10 mb-6 sm:mb-0">
-            <img src="/arrows.png" alt="Deposit" className="mb-4 w-12 h-12" />
-            <button className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-              Deposit
-            </button>
-          </div>
-          <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center -mt-9">
-            <div className="mb-20">
-              <label className="block text-2xl font-bold mb-4" htmlFor="deposit-amount">
-                Deposit Amount
-              </label>
-              <input className="shadow appearance-none border rounded w-full py-2 px-3 mb-10 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="deposit-amount" type="number" placeholder="0.00" />
-            </div>
-            <div className="mb-6">
-              <label className="block text-2xl font-bold mb-2" htmlFor="currency">
-                Currency
-              </label>
-              <select className="shadow appearance-none border rounded w-full py-2 px-3 mb-20 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="currency">
-                <option value="" hidden></option>
-                <option>Maletic Money</option>
-                <option>Nesty Coin</option>
-                <option>Giovanni Token</option>
-              </select>
-            </div>
-          </div>
         </div>
       </div>
     </>
   );
 }
 
-export default Deposit;
+export default Withdraw;
