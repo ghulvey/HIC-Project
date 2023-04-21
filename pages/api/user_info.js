@@ -17,32 +17,29 @@ export default async function handler(req, res) {
     const accountObjectData = JSON.parse(accountFileContents);
 
 
-    // Process a POST request
-    if (req.method === 'POST') {
-        console.log(user_id)
-        if (user_id != null) {
-            let accounts = []
-            let transactions = []
-            for (let i = 0; i < userObjectData[user_id].accounts.length; i++) {
-                accounts.push(accountObjectData[userObjectData[user_id].accounts[i]])
-                for (let j = 0; j < accountObjectData[userObjectData[user_id].accounts[i]].transactions.length; j++) {
-                    let temp = accountObjectData[userObjectData[user_id].accounts[i]].transactions[j]
-                    temp.coin = accountObjectData[userObjectData[user_id].accounts[i]].coin
-                    transactions.push(temp)
-                }
+
+    console.log(user_id)
+    if (user_id != null) {
+        let accounts = []
+        let transactions = []
+        for (let i = 0; i < userObjectData[user_id].accounts.length; i++) {
+            accounts.push(accountObjectData[userObjectData[user_id].accounts[i]])
+            for (let j = 0; j < accountObjectData[userObjectData[user_id].accounts[i]].transactions.length; j++) {
+                let temp = accountObjectData[userObjectData[user_id].accounts[i]].transactions[j]
+                temp.coin = accountObjectData[userObjectData[user_id].accounts[i]].coin
+                transactions.push(temp)
             }
-            res.status(200).json({
-                first_name: userObjectData[user_id].first_name,
-                last_name: userObjectData[user_id].last_name,
-                accounts: accounts,
-                transactions: transactions
-            })
-        } else {
-            res.status(400).json({ result: 'Failure', error: 'User not authenticated' })
         }
+        res.status(200).json({
+            first_name: userObjectData[user_id].first_name,
+            last_name: userObjectData[user_id].last_name,
+            accounts: accounts,
+            bank_accounts: userObjectData[user_id].bank_accounts,
+            transactions: transactions
+        })
     } else {
-        // Handle any other HTTP method
-        res.status(200).json({ error: 'Invalid HTTP Request' });
+        res.status(400).json({ result: 'Failure', error: 'User not authenticated' })
     }
+
 
 }

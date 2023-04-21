@@ -5,7 +5,7 @@ import { promises as fs } from 'fs';
 
 export default async function handler(req, res) {
     const jsonDirectory = path.join(process.cwd(), 'data');
-    //Read the json data file data.json
+    //Read the json data file values.json
     const valuesFileContents = await fs.readFile(jsonDirectory + '/values.json', 'utf8');
     const valuesObjectData = JSON.parse(valuesFileContents);
     // Return the values data
