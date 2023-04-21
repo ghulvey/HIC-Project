@@ -82,7 +82,8 @@ export default async function handler(req, res) {
                 "first_name": req.body.firstName,
                 "last_name": req.body.lastName,
                 "password": req.body.password,
-                "accounts": ['G' + accountNumber, 'M' + accountNumber, 'N' + accountNumber]
+                "accounts": ['G' + accountNumber, 'M' + accountNumber, 'N' + accountNumber],
+                "bank_accounts": []
             }
             const jsonString = JSON.stringify(userObjectData);
             await fs.writeFile(jsonDirectory + '/users.json', jsonString, 'utf8');

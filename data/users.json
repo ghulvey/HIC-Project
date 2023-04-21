@@ -1,1 +1,60 @@
-{"jdoe":{"first_name":"John","last_name":"Doe","password":"Password1234","accounts":[]},"ghulvey":{"first_name":"Gavin","last_name":"Hulvey","password":"Password","accounts":["M123456","N123456","G123456"]},"ghulvey2":{"first_name":"Gavin","last_name":"Hulvey","password":"Foo","accounts":[]},"jbanks_money":{"first_name":"Joe","last_name":"Banks","password":"Thisisapassword1","accounts":[]},"blah":{"first_name":"Foo","last_name":"Foo","password":"Password","accounts":["Gnull","Mnull","Nnull"]},"Man":{"first_name":"Man","last_name":"Man","password":"Password","accounts":["G123457","M123457","N123457"]},"Person":{"first_name":"Person","last_name":"Person","password":"Password","accounts":["G123458","M123458","N123458"]}}
+{
+    "jdoe": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "password": "Password1234",
+        "accounts": []
+    },
+    "ghulvey": {
+        "first_name": "Gavin",
+        "last_name": "Hulvey",
+        "password": "Password",
+        "accounts": [
+            "M123456",
+            "N123456",
+            "G123456"
+        ]
+    },
+    "ghulvey2": {
+        "first_name": "Gavin",
+        "last_name": "Hulvey",
+        "password": "Foo",
+        "accounts": []
+    },
+    "jbanks_money": {
+        "first_name": "Joe",
+        "last_name": "Banks",
+        "password": "Thisisapassword1",
+        "accounts": []
+    },
+    "blah": {
+        "first_name": "Foo",
+        "last_name": "Foo",
+        "password": "Password",
+        "accounts": [
+            "Gnull",
+            "Mnull",
+            "Nnull"
+        ]
+    },
+    "Man": {
+        "first_name": "Man",
+        "last_name": "Man",
+        "password": "Password",
+        "accounts": [
+            "G123457",
+            "M123457",
+            "N123457"
+        ]
+    },
+    "Person": {
+        "first_name": "Person",
+        "last_name": "Person",
+        "password": "Password",
+        "accounts": [
+            "G123458",
+            "M123458",
+            "N123458"
+        ]
+    }
+}

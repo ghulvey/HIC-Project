@@ -7,7 +7,30 @@ import Loading from '@/components/loading'
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from 'next/router';
 
-export default function values() {
+function Values() {
+
+    const [data, setData] = useState(null)
+    const [isLoading, setLoading] = useState(false)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            // Display a loading indicator
+            setLoading(true)
+            // Fetch the the value of each coin
+            const response = await fetch('/api/values')
+            const data = await response.json()
+            console.log(data)
+            setData(data)
+            setLoading(false)
+            
+            
+        }
+        fetchData()
+    }, [])
+
+    if (isLoading) return <Loading />
+    if (!data) return <p>Failed to load</p>
+    
     return (
         <>
         <Head>
@@ -24,15 +47,15 @@ export default function values() {
     <div className='flex space-x-40 justify-center'>
         <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-56 -mt-9'>
             <h2 className='text-2xl text-center pb-2'>Maletic Money</h2>
-            <p className='text-4xl text-center pb-4'>$1500</p>
+            <p className='text-4xl text-center pb-4'>${data["Maletic Money"].current_value}</p>
         </div>
         <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-56 -mt-9'>
             <h2 className='text-2xl text-center pb-2'>Nesty Coin</h2>
-            <p className='text-4xl text-center pb-4'>$1200</p>
+            <p className='text-4xl text-center pb-4'>${data["Nesty Coin"].current_value}</p>
         </div>
         <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-56 -mt-9'>
             <h2 className='text-2xl text-center pb-2'>Giovanni Token</h2>
-            <p className='text-4xl text-center pb-4'>$9999</p>
+            <p className='text-4xl text-center pb-4'>${data["Giovanni Token"].current_value}</p>
         </div>
     </div>
 </div>
@@ -46,3 +69,5 @@ export default function values() {
       </>
     )
 }
+
+export default Values
