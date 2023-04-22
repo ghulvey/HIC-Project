@@ -49,12 +49,18 @@ export default async function handler(req, res) {
         saveBank = req.body.bankRemember;
     }
 
-    // Check to ensure account exists
+
     if (!accountObjectData.hasOwnProperty(req.body.account)) {
+        // Check to ensure account exists
         res.status(400).json({ result: 'Failure', error: 'Account does not exist' })
     } else if (accountObjectData[req.body.account].owner !== user_id) {
+        // Check to ensure account belongs to user
         res.status(400).json({ result: 'Failure', error: 'Account does not belong to user' })
+    } else if (accountObjectData[req.body.account].balance < amount) {
+        // Check to ensure account has enough coins
+        res.status(400).json({ result: 'Failure', error: 'Account does not have enough coins' })
     } else {
+
 
         // Save the bank account if the user wants to
         if (saveBank) {
@@ -73,14 +79,14 @@ export default async function handler(req, res) {
         const value = valuesObjectData[coin].current_value;
 
         // Calculate the amount of coins
-        const estimate = Math.round(amount / value * 100) / 100;
+        const estimate = Math.round(amount * value * 100) / 100;
 
         // Add the coins to the account
-        accountObjectData[req.body.account].balance += estimate;
+        accountObjectData[req.body.account].balance -= amount;
         accountObjectData[req.body.account].transactions.push({
-            description: "Deposit from " + bankName + " (" + bankAccount + ")",
-            amount: estimate,
-            usd: amount,
+            description: "Withdraw to " + bankName + " (" + bankAccount + ")",
+            amount: amount,
+            usd: estimate,
             date: new Date()
         })
 

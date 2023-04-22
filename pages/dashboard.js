@@ -56,7 +56,7 @@ function Dashboard() {
       <div  className='-mt-9'>
         <div className='flex items-center justify-center space-x-6'>
           {data.accounts.map((account, index) => {
-            return <AccountCard key={index} coin={account.coin} balance={account.balance} accountNumber={account.account_number} />
+            return <AccountCard key={index} coin={account.coin} balance={Math.round(account.balance * 100) / 100} accountNumber={account.account_number} />
           })}
         </div>
         <div className='flex items-center justify-center space-x-6 pt-6'>
@@ -68,6 +68,8 @@ function Dashboard() {
                 <th className="border px-4 py-2">Description</th>
                 <th className="border px-4 py-2">Coin</th>
                 <th className="border px-4 py-2">Amount</th>
+                <th className="border px-4 py-2">USD</th>
+
               </tr>
             </thead>
             <tbody>
@@ -77,6 +79,7 @@ function Dashboard() {
                     <td className="border px-4 py-2">{transaction.description}</td>
                     <td className="border px-4 py-2">{transaction.coin}</td>
                     <td className="border px-4 py-2">{transaction.amount}</td>
+                    <td className="border px-4 py-2">${transaction.usd}</td>
                   </tr>
                 )
               })}

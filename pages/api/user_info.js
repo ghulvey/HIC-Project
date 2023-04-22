@@ -30,6 +30,10 @@ export default async function handler(req, res) {
                 transactions.push(temp)
             }
         }
+
+        // Sort transactions by date
+        transactions.sort((a, b) => (a.date < b.date) ? 1 : -1)
+
         res.status(200).json({
             first_name: userObjectData[user_id].first_name,
             last_name: userObjectData[user_id].last_name,

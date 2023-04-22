@@ -39,19 +39,31 @@ function Deposit() {
 
 
   function submitDeposit() {
+
+    let errorMsg = ''
+
     const amount = document.getElementById('deposit-amount').value
     const account = document.getElementById('crypto-account').value
+    if(amount === '') { errorMsg += 'Please enter an amount. \n' }
+    if(account === '') { errorMsg += 'Please select an account. \n' }
     let data = null
     if(showEnterAccount) {
       const bankName = document.getElementById('bank-account-name').value
       const bank = document.getElementById('bank-account-number').value
       const routing = document.getElementById('bank-routing-number').value
       const remember = document.getElementById('remember-account').checked
+      
+      
+      if(bankName === '') { errorMsg += 'Please enter a bank account name. \n' }
+      if(bank === '') { errorMsg += 'Please enter a bank account number. \n' }
+      if(routing === '') { errorMsg += 'Please enter a bank routing number. \n' }
+
 
       data = {amount: amount, account: account, bankName: bankName, bankAccount: bank, bankRouting: routing, bankRemember: remember}
 
     } else {
       const selected = document.getElementById('saved-accounts').value
+      if(selected === '') { errorMsg += 'Please select a saved account. \n' }
       data = {amount: amount, account: account, savedBank: selected }
     }
 
@@ -70,7 +82,11 @@ function Deposit() {
         alert('Deposit failed.')
       }
     }
-    submitData()
+    if(errorMsg !== '') {
+      alert(errorMsg)
+    } else {
+      submitData()
+    }
 
     console.log(data)
     
@@ -122,7 +138,6 @@ function Deposit() {
             <h2 className="text-2xl font-bold mb-2">Bank Account</h2>
             <div className="mb-8">
                 
-                {/* Pull accounts from API? */}
                 {
                   !showEnterAccount ?
                   <div>
