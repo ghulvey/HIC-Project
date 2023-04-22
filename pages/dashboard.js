@@ -59,10 +59,10 @@ function Dashboard() {
             return <AccountCard key={index} coin={account.coin} balance={Math.round(account.balance * 100) / 100} accountNumber={account.account_number} />
           })}
         </div>
-        <div className='flex items-center justify-center space-x-6 pt-6'>
+        <div className='flex items-center justify-center space-x-6 pt-6 mb-8'>
           <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-100'>
           <h2 className='text-2xl text-center pb-2'>Recent Transactions</h2>
-          <table className="table-auto ">
+          <table className="table-auto">
             <thead>
               <tr>
                 <th className="border px-4 py-2">Description</th>

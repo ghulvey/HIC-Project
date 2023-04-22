@@ -81,7 +81,7 @@ export default async function handler(req, res) {
         // Calculate the amount of coins
         const estimate = Math.round(amount * value * 100) / 100;
 
-        // Add the coins to the account
+        // Remove the coins to the account
         accountObjectData[req.body.account].balance -= amount;
         accountObjectData[req.body.account].transactions.push({
             description: "Withdraw to " + bankName + " (" + bankAccount + ")",

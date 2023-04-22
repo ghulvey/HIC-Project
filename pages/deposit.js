@@ -17,8 +17,19 @@ function Deposit() {
   const [isLoading, setLoading] = useState(false)
   const [showEnterAccount, setShowEnterAccount] = useState(false)
 
+  const savedBankRef = useRef(null)
+  const bankAccountNameRef = useRef(null)
+  const bankAccountNumberRef = useRef(null)
+  const bankRoutingNumberRef = useRef(null)
+  const rememberAccountRef = useRef(null)
+  const depositAmountRef = useRef(null)
+  const cryptoAccountRef = useRef(null)
+
+
   useEffect(() => {
+    
     const fetchData = async () => {
+      setLoading(true)
       // Fetch the user's profile data
       const response = await fetch('/api/user_info')
       // If the user is not authenticated, redirect to the login page
@@ -33,8 +44,10 @@ function Deposit() {
       if(d.bank_accounts.length === 0) {
         setShowEnterAccount(true)
       }
+      setLoading(false)
     }
     fetchData()
+    
   }, [])
 
 
@@ -42,16 +55,16 @@ function Deposit() {
 
     let errorMsg = ''
 
-    const amount = document.getElementById('deposit-amount').value
-    const account = document.getElementById('crypto-account').value
+    const amount = depositAmountRef.current.value
+    const account = cryptoAccountRef.current.value
     if(amount === '') { errorMsg += 'Please enter an amount. \n' }
     if(account === '') { errorMsg += 'Please select an account. \n' }
     let data = null
     if(showEnterAccount) {
-      const bankName = document.getElementById('bank-account-name').value
-      const bank = document.getElementById('bank-account-number').value
-      const routing = document.getElementById('bank-routing-number').value
-      const remember = document.getElementById('remember-account').checked
+      const bankName = bankAccountNameRef.current.value
+      const bank = bankAccountNumberRef.current.value
+      const routing = bankRoutingNumberRef.current.value
+      const remember = rememberAccountRef.current.checked
       
       
       if(bankName === '') { errorMsg += 'Please enter a bank account name. \n' }
@@ -62,7 +75,7 @@ function Deposit() {
       data = {amount: amount, account: account, bankName: bankName, bankAccount: bank, bankRouting: routing, bankRemember: remember}
 
     } else {
-      const selected = document.getElementById('saved-accounts').value
+      const selected = savedBankRef.current.value
       if(selected === '') { errorMsg += 'Please select a saved account. \n' }
       data = {amount: amount, account: account, savedBank: selected }
     }
@@ -79,7 +92,7 @@ function Deposit() {
       if(status === 200) {
         alert('Deposit successful!')
       } else {
-        alert('Deposit failed.')
+        alert('Deposit failed. \n' + d.error)
       }
     }
     if(errorMsg !== '') {
@@ -144,7 +157,7 @@ function Deposit() {
                     <label className="block text-lg font-bold mb-4" htmlFor="saved-accounts">
                       Select Saved Account
                     </label>
-                    <select className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white mb-4" id="saved-accounts">
+                    <select className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white mb-4" id="saved-accounts" ref={savedBankRef}>
                     {
                       data.bank_accounts.map((account, index) => {
                         return <option key={index} value={index}>{account.account_name} ({account.account_number})</option>
@@ -161,24 +174,24 @@ function Deposit() {
                           <label className="block text-md font-bold mr-4" htmlFor="bank-account-number">
                                       Bank Account Number
                                   </label>
-                          <input className="shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="bank-account-number" type="text" />
+                          <input className="shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="bank-account-number" type="text" ref={bankAccountNumberRef}/>
                       </div>
                       <div className="flex items-center mb-4">
                           <label className="block text-md font-bold mr-4" htmlFor="bank-routing-number">
                                       Routing Number
                                   </label>
-                          <input className="shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="bank-routing-number" type="text" />
+                          <input className="shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="bank-routing-number" type="text" ref={bankRoutingNumberRef}/>
                       </div>
                       <div className="flex items-center mb-4">
                           <label className="block text-md font-bold mr-4" htmlFor="bank-account-name">
                                       Account Name
                                   </label>
-                          <input className="shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="bank-account-name" type="text" />
+                          <input className="shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="bank-account-name" type="text" ref={bankAccountNameRef} />
                       </div>
 
 
                       <div className="flex items-center justify-center mt-4 mb-5">
-                          <input className="mr-2" type="checkbox" id="remember-account" />
+                          <input className="mr-2" type="checkbox" id="remember-account" ref={rememberAccountRef}/>
                           <label htmlFor="remember-account">Remember this account</label>
                       </div>
                     </div>
@@ -211,13 +224,13 @@ function Deposit() {
               <label className="block text-2xl font-bold mb-4" htmlFor="deposit-amount">
                 Deposit Amount
               </label>
-              <input onChange={depositEstimate} className="shadow appearance-none border rounded w-full py-2 px-3 mb-10 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="deposit-amount" type="number" placeholder="0.00" name="deposit-amount" />
+              <input onChange={depositEstimate} className="shadow appearance-none border rounded w-full py-2 px-3 mb-10 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="deposit-amount" type="number" placeholder="0.00" name="deposit-amount" ref={depositAmountRef}/>
             </div>
             <div className="mb-4">
               <label className="block text-2xl font-bold mb-2" htmlFor="crypto-account">
                 Crypto Account
               </label>
-              <select onChange={depositEstimate} className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="crypto-account" name="crypto-account">
+              <select onChange={depositEstimate} className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-black bg-white" id="crypto-account" name="crypto-account" ref={cryptoAccountRef}>
                   {
                     // Map through the user's accounts and display them
                       data.accounts.map((account, index) => {
