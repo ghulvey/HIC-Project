@@ -8,8 +8,6 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
 
-{/* may need to add alerts / api routes */}
-
 function Withdraw() {
 
   const router = useRouter()
@@ -141,7 +139,7 @@ function Withdraw() {
       <Navbar />
       <Header title="Make a Withdraw"/>
       <div className="bg-gray-300 sm:h-screen h-full">
-        <div className="flex flex-col sm:flex-row items-center justify-center items-stretch">
+        <div className="flex flex-col sm:flex-row justify-center items-stretch">
         <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center -mt-9">
             <div className="mb-4">
               <label className="block text-2xl font-bold mb-4" htmlFor="deposit-amount">
@@ -173,16 +171,15 @@ function Withdraw() {
             }
             
           </div>
-          <div className="flex flex-col items-center sm:pr-10 sm:pl-10 mb-6 sm:mb-0">
+          <div className="flex flex-col justify-center items-center sm:pr-10 sm:pl-10 mb-6 sm:mb-0">
             <img src="/arrows.png" alt="Withdraw" className="mb-4 w-12 h-12" />
-            <button onClick={submitWithdrawal} className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-              Withdraw
-            </button>
+              <button onClick={submitWithdrawal} className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Withdraw
+              </button>
           </div>
           <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center mb-6 sm:mb-0 -mt-9">
             <h2 className="text-2xl font-bold mb-2">Bank Account</h2>
             <div className="mb-8">
-                
                 {
                   !showEnterAccount ?
                   <div>

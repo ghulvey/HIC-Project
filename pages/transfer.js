@@ -8,8 +8,6 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
 
-{/* may need to add alerts / api routes */}
-
 function Transfers() {
 
   const router = useRouter()
@@ -101,7 +99,7 @@ function Transfers() {
       <Navbar />
       <Header title="Make a Transfer" />
       <div className="bg-gray-300 sm:h-screen h-full">
-        <div className="flex flex-col sm:flex-row items-center justify-center items-stretch">
+        <div className="flex flex-col sm:flex-row justify-center items-stretch">
           <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center mb-6 sm:mb-0 -mt-9">
             <h1 className="text-center text-4xl pb-4"></h1>
             <div className="mb-8 ">
@@ -127,7 +125,7 @@ function Transfers() {
               </select>
             </div>
           </div>
-          <div className="flex flex-col items-center sm:pr-10 sm:pl-10 mb-6 sm:mb-0">
+          <div className="flex flex-col justify-center items-center sm:pr-10 sm:pl-10 mb-6 sm:mb-0">
             <img src="/arrows.png" alt="Transfer" className="mb-4 w-12 h-12" />
             <button onClick={submitTransfer} className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
               Transfer
