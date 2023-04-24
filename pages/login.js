@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { useRouter } from 'next/router';
 import Link from 'next/link'
+import { toast } from 'react-hot-toast';
 
 
 export default function Login() {
@@ -14,7 +15,6 @@ export default function Login() {
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
-  const [error, setError] = useState('')
 
   const callAPI = async (e) => {
     e.preventDefault()
@@ -33,15 +33,16 @@ export default function Login() {
 
       if(res.status === 200) {
         if (json.result === 'Success') {
-          router.push('/dashboard')
+          toast.success("Successfully logged in.");
+          router.push('/dashboard');
         } else {
-          setError(json.error)
+          toast.error(json.error)
         }
       } else {
-        setError('The server is unable to process your request at this time.')
+        toast.error('The server is unable to process your request at this time.')
       }
     } catch (e) {
-      console.log(e)
+      toast.error(e)
     }
   }
 
@@ -65,7 +66,6 @@ export default function Login() {
         <div className='flex items-center justify-center -mt-9'>
           <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96'>
             <h1 className='text-center text-4xl pb-4'>Login</h1>
-            <div className="message">{error? <div className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-2 rounded relative'>{error}</div> : null}</div>
             <form onSubmit={callAPI}>
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="username">

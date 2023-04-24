@@ -6,6 +6,7 @@ import Header from '@/components/header';
 import Loading from '@/components/loading';
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from 'next/router';
+import { toast } from 'react-hot-toast';
 
 {/* may need to add alerts / api routes */}
 
@@ -49,7 +50,7 @@ function Withdraw() {
 
   function submitWithdrawal() {
 
-    let errorMsg = ''
+    let errorMessages = [];
 
     const amount = withdrawAmountRef.current.value
     const account = cryptoAccountRef.current.value
@@ -63,16 +64,16 @@ function Withdraw() {
       const remember = rememberAccountRef.current.checked
       
       
-      if(bankName === '') { errorMsg += 'Please enter a bank account name. \n' }
-      if(bank === '') { errorMsg += 'Please enter a bank account number. \n' }
-      if(routing === '') { errorMsg += 'Please enter a bank routing number. \n' }
+      if(bankName === '') { errorMessages.push('Please enter a bank account name.'); }
+      if(bank === '') { errorMessages.push('Please enter a bank account number.'); }
+      if(routing === '') { errorMessages.push('Please enter a bank routing number.'); }
 
 
       data = {amount: amount, account: account, bankName: bankName, bankAccount: bank, bankRouting: routing, bankRemember: remember}
 
     } else {
       const selected = savedBankRef.current.value
-      if(selected === '') { errorMsg += 'Please select a saved account. \n' }
+      if(selected === '') { errorMessages.push('Please select a saved account.'); }
       data = {amount: amount, account: account, savedBank: selected }
     }
 
@@ -86,13 +87,13 @@ function Withdraw() {
       const d = await response.json()
       const status = await response.status
       if(status === 200) {
-        alert('Withdraw successful!')
+        toast.success('Withdraw successful!')
       } else {
-        alert('Withdraw failed. \n' + d.error)
+        toast.error(`Withdraw failed: ${d.error}`);
       }
     }
-    if(errorMsg !== '') {
-      alert(errorMsg)
+    if(errorMessages.length != 0) {
+      errorMessages.forEach(message => toast.error(message));
     } else {
       submitData()
     }

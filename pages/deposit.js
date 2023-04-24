@@ -6,6 +6,7 @@ import Header from '@/components/header';
 import Loading from '@/components/loading';
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from 'next/router';
+import { toast } from 'react-hot-toast';
 
 {/* may need to add alerts / api routes */}
 
@@ -53,12 +54,12 @@ function Deposit() {
 
   function submitDeposit() {
 
-    let errorMsg = ''
+    let errorMessages = [];
 
     const amount = depositAmountRef.current.value
     const account = cryptoAccountRef.current.value
-    if(amount === '') { errorMsg += 'Please enter an amount. \n' }
-    if(account === '') { errorMsg += 'Please select an account. \n' }
+    if(amount === '') { errorMessages.push('Please enter an amount.') }
+    if(account === '') { errorMessages.push('Please select an account.') }
     let data = null
     if(showEnterAccount) {
       const bankName = bankAccountNameRef.current.value
@@ -67,16 +68,16 @@ function Deposit() {
       const remember = rememberAccountRef.current.checked
       
       
-      if(bankName === '') { errorMsg += 'Please enter a bank account name. \n' }
-      if(bank === '') { errorMsg += 'Please enter a bank account number. \n' }
-      if(routing === '') { errorMsg += 'Please enter a bank routing number. \n' }
+      if(bankName === '') { errorMessages.push('Please enter a bank account name.') }
+      if(bank === '') { errorMessages.push('Please enter a bank account number.') }
+      if(routing === '') { errorMessages.push('Please enter a bank routing number.') }
 
 
       data = {amount: amount, account: account, bankName: bankName, bankAccount: bank, bankRouting: routing, bankRemember: remember}
 
     } else {
       const selected = savedBankRef.current.value
-      if(selected === '') { errorMsg += 'Please select a saved account. \n' }
+      if(selected === '') { errorMessages.push('Please select a saved account.'); }
       data = {amount: amount, account: account, savedBank: selected }
     }
 
@@ -90,13 +91,13 @@ function Deposit() {
       const d = await response.json()
       const status = await response.status
       if(status === 200) {
-        alert('Deposit successful!')
+        toast.success('Deposit successful!')
       } else {
-        alert('Deposit failed. \n' + d.error)
+        toast.error('Deposit failed. \n' + d.error)
       }
     }
-    if(errorMsg !== '') {
-      alert(errorMsg)
+    if(errorMessages.length !== 0) {
+      errorMessages.forEach(message => toast.error(message));
     } else {
       submitData()
     }

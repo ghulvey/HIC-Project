@@ -6,6 +6,7 @@ import Header from '@/components/header';
 import Loading from '@/components/loading';
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from 'next/router';
+import { toast } from 'react-hot-toast';
 
 {/* may need to add alerts / api routes */}
 
@@ -42,23 +43,23 @@ function Transfers() {
 
   function submitTransfer() {
 
-    let errorMsg = ''
+    let errorMessages = [];
 
     const amount = amountRef.current.value
     const srcAccount = srcAccountRef.current.value
-    if(amount === '') { errorMsg += 'Please enter an amount. \n' }
-    if(srcAccount === '') { errorMsg += 'Please select an account. \n' }
+    if(amount === '') { errorMessages.push('Please enter an amount.') }
+    if(srcAccount === '') { errorMessages.push('Please select an account.') }
     let data = null
     if(accountLookup) {
       const username = destAccountUserRef.current.value
       
-      if(username === '') { errorMsg += 'Please enter a username. \n' }
+      if(username === '') { errorMessages.push('Please enter a username.') }
 
       data = {amount: amount, srcAccount: srcAccount, destUser: username }
 
     } else {
       const destAccount = destAccountRef.current.value
-      if(destAccount === '') { errorMsg += 'Please select a destination account number. \n' }
+      if(destAccount === '') { errorMessages.push('Please select a destination account number.') }
       data = {amount: amount, srcAccount: srcAccount, destAccount: destAccount }
     }
 
@@ -72,13 +73,13 @@ function Transfers() {
       const d = await response.json()
       const status = await response.status
       if(status === 200) {
-        alert('Transfer successful!')
+        toast.success('Transfer successful!')
       } else {
-        alert('Transfer failed. \n' + d.error)
+        toast.error(`Transfer failed. ${d.error}`)
       }
     }
-    if(errorMsg !== '') {
-      alert(errorMsg)
+    if(errorMessages.length != 0) {
+      errorMessages.forEach(message => toast.error(message));
     } else {
       submitData()
     }
