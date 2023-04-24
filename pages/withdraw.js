@@ -54,8 +54,8 @@ function Withdraw() {
 
     const amount = withdrawAmountRef.current.value
     const account = cryptoAccountRef.current.value
-    if(amount === '') { errorMsg += 'Please enter an amount. \n' }
-    if(account === '') { errorMsg += 'Please select an account. \n' }
+    if(amount === '') { errorMessages.push('Please enter an amount.'); }
+    if(account === '') { errorMessages.push('Please select an account.');}
     let data = null
     if(showEnterAccount) {
       const bankName = bankAccountNameRef.current.value
