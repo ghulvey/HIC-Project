@@ -1,8 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useRouter } from 'next/router';
 import Link from 'next/link'
 import { toast } from 'react-hot-toast';

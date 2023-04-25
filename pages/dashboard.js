@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import Navbar from '@/components/navbar'
 import Header from '@/components/header'
 import AccountCard from '@/components/accountCard'
 import Loading from '@/components/loading'
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import Link from "next/link";
 
