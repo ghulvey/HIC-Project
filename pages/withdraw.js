@@ -164,8 +164,8 @@ function Withdraw() {
               // If estimate is not null, show the estimate
               estimate ? 
               <div className="mb-6">
-                <p>Estimated: ${estimate.estimate}</p>
-                <p>New Balance: {estimate.new_balance}</p>
+                <p>Estimated: ${estimate.estimate.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</p>
+                <p>New Balance: {estimate.new_balance.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</p>
               </div>
               : null
             }

@@ -6,6 +6,7 @@ import AccountCard from '@/components/accountCard'
 import Loading from '@/components/loading'
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from 'next/router';
+import Link from "next/link";
 
 
 function Dashboard() {
@@ -56,8 +57,28 @@ function Dashboard() {
       <div  className='-mt-9'>
         <div className='flex items-center justify-center space-x-6'>
           {data.accounts.map((account, index) => {
-            return <AccountCard key={index} coin={account.coin} balance={Math.round(account.balance * 100) / 100} accountNumber={account.account_number} />
+            return <AccountCard key={index} coin={account.coin} balance={account.balance.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} accountNumber={account.account_number} />
           })}
+        </div>
+        <div className='flex items-center justify-center space-x-6 pt-6'>
+          <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-100'>
+            <h2 className='text-2xl text-center pb-4'>Quick Actions</h2>
+            <Link href="/values" className="block mt-4 lg:inline-block lg:mt-0 bg-red-900  px-5 py-2 rounded text-white hover:bg-red-950 mr-4">
+                    Check Values
+                </Link>
+                <Link href="/convert" className="block mt-4 lg:inline-block lg:mt-0 bg-red-900  px-5 py-2 rounded text-white hover:bg-red-950 mr-4">
+                    Convert Coins
+                </Link>
+                <Link href="/withdraw" className="block mt-4 lg:inline-block lg:mt-0 bg-red-900  px-5 py-2 rounded text-white hover:bg-red-950 mr-4">
+                    Withdraw
+                </Link>
+                <Link href="/transfer" className="block mt-4 lg:inline-block lg:mt-0 bg-red-900  px-5 py-2 rounded text-white hover:bg-red-950 mr-4">
+                    Transfer
+                </Link>
+                <Link href="/deposit" className="block mt-4 lg:inline-block lg:mt-0 bg-red-900  px-5 py-2 rounded text-white hover:bg-red-950 mr-4">
+                    Deposit
+                </Link>
+          </div>
         </div>
         <div className='flex items-center justify-center space-x-6 pt-6 mb-8'>
           <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-100'>
@@ -78,8 +99,8 @@ function Dashboard() {
                   <tr key={index}>
                     <td className="border px-4 py-2">{transaction.description}</td>
                     <td className="border px-4 py-2">{transaction.coin}</td>
-                    <td className="border px-4 py-2">{transaction.amount}</td>
-                    <td className="border px-4 py-2">${transaction.usd}</td>
+                    <td className="border px-4 py-2">{transaction.amount.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</td>
+                    <td className="border px-4 py-2">${transaction.usd.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</td>
                   </tr>
                 )
               })}

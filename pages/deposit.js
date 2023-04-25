@@ -143,7 +143,7 @@ function Deposit() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <Header title="Make a deposit"/>
+      <Header title="Make a Deposit"/>
       <div className="bg-gray-300 sm:h-screen h-full">
         <div className="flex flex-col sm:flex-row justify-center items-stretch">
         <div className="bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96 text-center mb-6 sm:mb-0 -mt-9">
@@ -242,8 +242,8 @@ function Deposit() {
               // If estimate is not null, show the estimate
               estimate ? 
               <div className="mb-6">
-                <p>Estimated: +{estimate.estimate}</p>
-                <p>New Balance: {estimate.new_balance}</p>
+                <p>Estimated: +{estimate.estimate.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</p>
+                <p>New Balance: {estimate.new_balance.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</p>
               </div>
               : null
             }
