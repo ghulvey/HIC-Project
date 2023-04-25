@@ -59,7 +59,7 @@ function Values() {
         </div>
     </div>
     <div className='text-center mt-8'>
-  <a href="/transfer">
+  <a href="/deposit">
     <div className='inline-block bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-1 w-56 mt-4'>
       <button className='text-2xl pb-2'>Buy</button>
     </div>
