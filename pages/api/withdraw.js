@@ -9,10 +9,12 @@ export default async function handler(req, res) {
     let user_id = req.cookies['user_id'];
     if (user_id == null) {
         res.status(400).json({ result: 'Failure', error: 'User not authenticated' })
+        return;
     }
 
     if (req.method !== 'POST') {
         res.status(400).json({ result: 'Failure', error: 'Invalid request method' })
+        return;
     }
 
     console.log(req.body)
