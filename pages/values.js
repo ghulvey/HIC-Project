@@ -38,7 +38,7 @@ function Values() {
         </Head>
   
         <Navbar />
-        <Header title="Values"/>
+        <Header title="Coin Values"/>
 
         <div className="bg-gray-300 sm:h-screen h-full">
     <div className='flex space-x-40 justify-center'>
@@ -57,13 +57,13 @@ function Values() {
     </div>
     <div className='text-center mt-8'>
   <a href="/deposit">
-    <div className='inline-block bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-1 w-56 mt-4'>
+    <div className='inline-block bg-red-900 text-white hover:bg-red-950 rounded overflow-hidden shadow-lg p-1 w-56 mt-1'>
       <button className='text-2xl pb-2'>Buy</button>
     </div>
-    <div className='inline-block bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-1 w-56 mt-4 ml-40'>
+    <div className='inline-block bg-red-900 text-white hover:bg-red-950 rounded overflow-hidden shadow-lg p-1 w-56 mt-1 ml-40'>
       <button className='text-2xl pb-2'>Buy</button>
     </div>
-    <div className='inline-block bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-1 w-56 mt-4 ml-40'>
+    <div className='inline-block bg-red-900 text-white hover:bg-red-950 rounded overflow-hidden shadow-lg p-1 w-56 mt-1 ml-40'>
       <button className='text-2xl pb-2'>Buy</button>
     </div>
   </a>
