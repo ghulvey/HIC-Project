@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Navbar from '@/components/navbar';
 import Header from '@/components/header';
 import Loading from '@/components/loading';
+import Image from "next/image";
+
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
@@ -46,7 +48,7 @@ function Withdraw() {
       setLoading(false)
     }
     fetchData()
-  }, [])
+  }, [ router ])
 
   function submitWithdrawal() {
 
@@ -174,7 +176,7 @@ function Withdraw() {
             
           </div>
           <div className="flex flex-col justify-center items-center sm:pr-10 sm:pl-10 mb-6 sm:mb-0">
-            <img src="/arrows.png" alt="Withdraw" className="mb-4 w-12 h-12" />
+            <Image src="/arrows.png" alt="Withdraw" className="mb-4 w-12 h-12" />
               <button onClick={submitWithdrawal} className="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                 Withdraw
               </button>

@@ -1,9 +1,12 @@
 { /* Author: Nathan Fleet */}
 
 import Head from 'next/head';
+import Image from "next/image";
+
 import Navbar from '@/components/navbar';
 import Header from '@/components/header';
 import Loading from '@/components/loading';
+
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
@@ -11,9 +14,9 @@ import { toast } from 'react-hot-toast';
 function Transfers() {
 
   const router = useRouter()
-  const [data, setData] = useState(null)
-  const [isLoading, setLoading] = useState(false)
-  const [accountLookup, setAccountLookup] = useState(false)
+  const [ data, setData ] = useState(null)
+  const [ isLoading, setLoading ] = useState(false)
+  const [ accountLookup, setAccountLookup ] = useState(false)
 
   const srcAccountRef = useRef(null)
   const destAccountRef = useRef(null)
@@ -39,7 +42,7 @@ function Transfers() {
       setLoading(false)
     }
     fetchData()
-  }, [])
+  }, [ router ])
 
   function submitTransfer() {
 

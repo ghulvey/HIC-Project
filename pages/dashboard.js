@@ -22,8 +22,8 @@ function Dashboard() {
       const response = await fetch('/api/user_info', {method: 'POST'})
 
       // If the user is not authenticated, redirect to the login page
-      const stauts = await response.status
-      if (stauts === 400) {
+      const { status } = await response
+      if (status === 400) {
         router.push('/login')
       } else {
         // If the user is authenticated, display their profile data
@@ -35,7 +35,7 @@ function Dashboard() {
       
     }
     fetchData()
-  }, [])
+  }, [router ])
 
   if (isLoading) return <Loading />
   if (!data) return <p>Failed to load</p>
