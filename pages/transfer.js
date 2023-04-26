@@ -29,6 +29,8 @@ function Transfers() {
       const status = await response.status
       if (status === 400) {
         router.push('/login')
+        // Prevent page from rendering
+        return null
       }
 
       // If the user is authenticated, set the bank data

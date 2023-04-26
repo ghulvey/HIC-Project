@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Navbar from '@/components/navbar'
 import Header from '@/components/header'
+import Link from "next/link";
+
 
 export default function Home() {
   return (
@@ -10,8 +12,20 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
-      <Header title="Welcome to Centrailized Crypto"/>
+      <nav className="flex items-center justify-between flex-wrap bg-red-900 p-4">
+            <div className="flex items-center flex-shrink-0 text-white mr-6">
+            <Link href="/" className="font-semibold text-xl tracking-tight">Centralized Crypto</Link>
+            </div>
+            <div className=''>
+          <Link href="/login" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-red-900 hover:bg-white mt-4 lg:mt-0 mr-4">
+            Login
+          </Link>
+          <Link href="/signup" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-red-900 hover:bg-white mt-4 lg:mt-0">
+            Sign Up
+          </Link>
+          </div>
+          <Header title="Welcome to Centrailized Crypto"/>
+      </nav>
 
       <div className="bg-gray-300 sm:h-screen h-full ">
       <div className='flex space-x-10 justify-center mx-7'>

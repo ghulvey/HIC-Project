@@ -35,6 +35,8 @@ function Deposit() {
       const stauts = await response.status
       if (stauts === 400) {
         router.push('/login')
+        // Prevent page from rendering
+        return null
       }
 
       // If the user is authenticated, set the bank data
