@@ -49,23 +49,25 @@ export default async function handler(req, res) {
         const valueCoin = valuesObjectData[coin].current_value;
         const valueDest = valuesObjectData[dest].current_value;
 
-        // Calculate the amount of coin
-        const estimate = Math.round(amount * (valueCoin / valueDest));
+        // Find the value of the coin to USD
+        const estimate = Math.round(amount * valueCoin * 100) / 100;
+        // Convert from USD to the destination coin
+        const addEst = Math.round(estimate / valueDest * 100) / 100;
 
         // Remove the coins to the account
-        accountObjectData[req.body.srcAccount].balance -= estimate;
+        accountObjectData[req.body.srcAccount].balance -= amount;
         accountObjectData[req.body.srcAccount].transactions.push({
-            description: `Convert from ${amount} ${srcAccount}} to ${estimate} ${destAccount}.`,
+            description: `Convert from ${coin} to ${dest} (${srcAccount})`,
             amount: amount,
             usd: estimate,
             date: new Date()
         })
 
         // Add the coins to the account
-        accountObjectData[destAccount].balance += estimate;
+        accountObjectData[destAccount].balance += addEst;
         accountObjectData[destAccount].transactions.push({
-            description: `Convert to ${estimate} ${srcAccount}} to ${account} ${destAccount}.`,
-            amount: amount,
+            description: `Convert to ${dest} from ${coin} to (${destAccount})`,
+            amount: addEst,
             usd: estimate,
             date: new Date()
         })

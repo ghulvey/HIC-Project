@@ -33,7 +33,7 @@ export default function Signup() {
       })
       const json = await res.json()
 
-      if(res.status === 200) {
+      if (res.status === 200) {
         if (json.result === 'Success') {
           toast.success("Account created successfully.")
           router.push('/dashboard')
@@ -69,25 +69,25 @@ export default function Signup() {
           <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-96'>
             <h1 className='text-center text-4xl pb-4'>Sign Up</h1>
             <form onSubmit={callAPI}>
-            <div className='flex items-center justify-between space-x-4'>
-              <div className="mb-4">
-                <label className="block text-sm font-bold mb-2" htmlFor="username">
-                  First Name
-                </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="first-name" type="text" ref={firstNameRef} placeholder="John" name="first-name"/>
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-bold mb-2" htmlFor="username">
-                  Last Name
-                </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="text" ref={lastNameRef} placeholder="Smith" name="first-name"/>
-              </div>
+              <div className='flex items-center justify-between space-x-4'>
+                <div className="mb-4">
+                  <label className="block text-sm font-bold mb-2" htmlFor="username">
+                    First Name
+                  </label>
+                  <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="first-name" type="text" ref={firstNameRef} placeholder="John" name="first-name" />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-bold mb-2" htmlFor="username">
+                    Last Name
+                  </label>
+                  <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="text" ref={lastNameRef} placeholder="Smith" name="first-name" />
+                </div>
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="username">
                   Username
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" ref={usernameRef} placeholder="Username" name="username"/>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" ref={usernameRef} placeholder="Username" name="username" />
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="password">
@@ -106,21 +106,21 @@ export default function Signup() {
                   Sign Up
                 </button>
                 <Link href='/login'>
-                <p className="text-center font-bold text-sm text-center text-blue-500 hover:text-blue-800">
-                  Already have an account?
-                </p>
+                  <p className="text-center font-bold text-sm text-center text-blue-500 hover:text-blue-800">
+                    Already have an account?
+                  </p>
                 </Link>
               </div>
-                
 
-                
+
+
 
             </form>
           </div>
         </div>
-        
+
       </div>
-      
+
     </>
   )
 }

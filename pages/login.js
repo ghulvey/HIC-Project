@@ -28,7 +28,7 @@ export default function Login() {
       })
       const json = await res.json()
 
-      if(res.status === 200) {
+      if (res.status === 200) {
         if (json.result === 'Success') {
           toast.success("Successfully logged in.");
           router.push('/dashboard');
@@ -68,7 +68,7 @@ export default function Login() {
                 <label className="block text-sm font-bold mb-2" htmlFor="username">
                   Username
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" ref={usernameRef} placeholder="Username" name="username"/>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" ref={usernameRef} placeholder="Username" name="username" />
               </div>
               <div className="mb-6">
                 <label className="block text-sm font-bold mb-2" htmlFor="password">
@@ -81,21 +81,21 @@ export default function Login() {
                   Sign In
                 </button>
                 <Link href='/signup'>
-                <p className="text-center font-bold text-sm text-center text-blue-500 hover:text-blue-800" href="#">
-                  Don&apos;t have an account?
-                </p>
+                  <p className="text-center font-bold text-sm text-center text-blue-500 hover:text-blue-800" href="#">
+                    Don&apos;t have an account?
+                  </p>
                 </Link>
               </div>
-                
 
-                
+
+
 
             </form>
           </div>
         </div>
-        
+
       </div>
-      
+
     </>
   )
 }

@@ -3,7 +3,8 @@ import Link from "next/link";
 
 const Loading = (props) => {
     return (
-        <div class="flex items-center justify-center h-screen">
+
+        <div class="flex items-center justify-center h-screen dark:bg-neutral-900">
         <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-56'>
             <h2 className='text-2xl text-center pb-2'>Processing</h2>
             <div className="flex items-center justify-center pt-3 pb-4">
