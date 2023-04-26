@@ -78,6 +78,14 @@ function Transfers() {
       const status = await response.status
       if (status === 200) {
         toast.success('Transfer successful!')
+        // Clear the form
+        amountRef.current.value = ''
+        srcAccountRef.current.value = ''
+        if(accountLookup){
+          destAccountUserRef.current.value = ''
+        } else {
+          destAccountRef.current.value = ''
+        }
       } else {
         toast.error(`Transfer failed. ${d.error}`)
       }

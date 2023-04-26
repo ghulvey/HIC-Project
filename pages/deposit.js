@@ -96,6 +96,17 @@ function Deposit() {
       const status = await response.status
       if (status === 200) {
         toast.success('Deposit successful!')
+        // Clear the form
+        depositAmountRef.current.value = ''
+        cryptoAccountRef.current.value = ''
+        if (showEnterAccount) {
+          bankAccountNameRef.current.value = ''
+          bankAccountNumberRef.current.value = ''
+          bankRoutingNumberRef.current.value = ''
+          rememberAccountRef.current.checked = false
+        } else {
+          savedBankRef.current.value = ''
+        }
       } else {
         toast.error('Deposit failed. \n' + d.error)
       }

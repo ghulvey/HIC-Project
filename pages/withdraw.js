@@ -91,6 +91,17 @@ function Withdraw() {
       const status = await response.status
       if (status === 200) {
         toast.success('Withdraw successful!')
+        // Clear the form
+        withdrawAmountRef.current.value = ''
+        cryptoAccountRef.current.value = ''
+        if (showEnterAccount) {
+          bankAccountNameRef.current.value = ''
+          bankAccountNumberRef.current.value = ''
+          bankRoutingNumberRef.current.value = ''
+          rememberAccountRef.current.checked = false
+        } else {
+          savedBankRef.current.value = ''
+        }
       } else {
         toast.error(`Withdraw failed: ${d.error}`);
       }

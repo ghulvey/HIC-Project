@@ -71,6 +71,10 @@ function Convert() {
       const status = await response.status
       if (status === 200) {
         toast.success('Conversion was successful!')
+        // Clear the form
+        srcAccountRef.current.value = ''
+        destAccountRef.current.value = ''
+        conversionAmountRef.current.value = ''
       } else {
         toast.error('Conversion failed. \n' + d.error)
       }
