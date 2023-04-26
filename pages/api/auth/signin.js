@@ -1,5 +1,6 @@
 import path from 'path';
 import { promises as fs } from 'fs';
+import { verify } from "argon2";
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 
@@ -14,7 +15,7 @@ export default async function loginHandler(req, res) {
     if (req.method === 'POST') {
         // Process a POST request
         if (objectData.hasOwnProperty(req.body.username)) {
-            if (objectData[req.body.username]["password"] === req.body.password) {
+            if (await verify(objectData[req.body.username]["password"], req.body.password)) {
                 res.setHeader("Set-Cookie", `user_id=${req.body.username}; path=/; samesite=lax; httponly;`);
                 res.status(200).json({ result: 'Success' })
             } else {

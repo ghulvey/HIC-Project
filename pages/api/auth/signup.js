@@ -1,5 +1,6 @@
 import path from 'path';
 import { promises as fs } from 'fs';
+import { hash } from 'argon2';
 //import { getCookies, setCookies, removeCookies } from 'cookies-next';
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
@@ -81,7 +82,7 @@ export default async function handler(req, res) {
             userObjectData[req.body.username] = {
                 "first_name": req.body.firstName,
                 "last_name": req.body.lastName,
-                "password": req.body.password,
+                "password": await hash(req.body.password),
                 "accounts": ['G' + accountNumber, 'M' + accountNumber, 'N' + accountNumber],
                 "bank_accounts": []
             }
