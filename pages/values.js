@@ -3,6 +3,7 @@ import Navbar from '@/components/navbar'
 import Header from '@/components/header'
 import Loading from '@/components/loading'
 import { useEffect, useState } from "react";
+import Link from 'next/link';
 
 function Values() {
 
@@ -56,8 +57,8 @@ function Values() {
         </div>
     </div>
     <div className='text-center mt-8'>
-  <a href="/deposit">
-    <div className='inline-block bg-red-900 text-white hover:bg-red-950 rounded overflow-hidden shadow-lg p-1 w-56 mt-1'>
+  <Link href="/deposit">
+    <div className='inline-block bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-1 w-56 mt-4'>
       <button className='text-2xl pb-2'>Buy</button>
     </div>
     <div className='inline-block bg-red-900 text-white hover:bg-red-950 rounded overflow-hidden shadow-lg p-1 w-56 mt-1 ml-40'>
@@ -66,7 +67,7 @@ function Values() {
     <div className='inline-block bg-red-900 text-white hover:bg-red-950 rounded overflow-hidden shadow-lg p-1 w-56 mt-1 ml-40'>
       <button className='text-2xl pb-2'>Buy</button>
     </div>
-  </a>
+  </Link>
 </div>
 </div>
 

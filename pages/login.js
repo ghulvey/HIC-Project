@@ -82,7 +82,7 @@ export default function Login() {
                 </button>
                 <Link href='/signup'>
                 <p className="text-center font-bold text-sm text-center text-blue-500 hover:text-blue-800" href="#">
-                  Don't have an account?
+                  Don&apos;t have an account?
                 </p>
                 </Link>
               </div>
