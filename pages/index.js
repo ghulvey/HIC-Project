@@ -24,9 +24,15 @@ export default function Home() {
             Sign Up
           </Link>
         </div>
-        <Header title="Welcome to Centrailized Crypto" />
+        
       </nav>
+      <div className="w-full bg-red-900 text-white py-20 px-24">
+            <h1 className="text-5xl text-center">Welcome to Centralized Crypto!</h1>
+            <p className="text-2xl text-center pt-2">The first centralized crypto currency system</p>
+            <h2 className="text-4xl text-center pt-14">Our Token Offerings:</h2>
+        </div>
 
+      
       <div className="bg-gray-300 dark:bg-neutral-900 sm:h-screen h-full ">
         <div className='flex space-x-10 justify-center mx-7'>
           <div className='bg-white text-black dark:bg-black dark:text-white rounded overflow-hidden shadow-lg p-6 w-61 -mt-9'>
@@ -42,7 +48,18 @@ export default function Home() {
             <p className='text-4sm text-justify pb-4'>Giovanni Token is another digital currency available on Centralized Crypto. It is a token that is used for various purposes, including payments, rewards, and access to exclusive content. Giovanni Token is based on the Ethereum blockchain, which allows for smart contracts and decentralized applications to be built on top of it.</p>
           </div>
         </div>
+        <div>
+          <h2 className="text-4xl text-center pt-14">Ready to Start Trading?</h2>
+          <div className='flex space-x-10 justify-center mx-7'>
+          <Link className="content-center text-center inline-block bg-red-900 text-white hover:bg-red-950 rounded overflow-hidden shadow-lg p-5 w-56 mt-3" href="/signup">Sign Up today!</Link>
+          </div>
+          <div className='flex space-x-10 justify-center mx-7'>
+          <Link className="mt-3 underline text-red-900" href="/login" >Already have an account? Login</Link>
+          </div>
+        </div>
       </div>
+      
+      
     </>
   )
 }
